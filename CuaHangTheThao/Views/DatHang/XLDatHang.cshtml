@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "XLDatHang";
+    Layout = "~/Views/Shared/layout_trangchu.cshtml";
+}
+@{
+    if (ViewBag.tb == 0)
+    {
+        <label style="text-align:center; color:red ">Gio hang rong !!!</label>
+    }
+    if (ViewBag.tb == 1)
+    {
+        <label style="text-align:center; color:red">Đã đặt hàng thành công</label>
+    }
+}

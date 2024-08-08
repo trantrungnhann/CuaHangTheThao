@@ -1,0 +1,41 @@
+﻿<style >
+h2 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+div {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.btn {
+    margin: 5px;
+}
+
+#soLuong {
+    width: 60px;
+    text-align: center;
+    font-size: 18px;
+}
+
+#giamSoLuong, #tangSoLuong {
+    font-size: 18px;
+}
+
+#capNhat {
+    margin-top: 20px;
+    display: block;
+    width: 100%;
+}
+
+</style >

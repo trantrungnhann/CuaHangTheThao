@@ -1,0 +1,97 @@
+﻿@using CuaHangTheThao.Models
+@model CuaHangTheThao.Models.GioHangmodel
+@{
+    ViewBag.Title = "XemGioHang";
+    Layout = "~/Views/Shared/layout_trangchu.cshtml";
+   
+}
+
+<h2>Thông tin giỏ hàng đã chọn</h2>
+<div class="text-right mt-3">
+    <a href="@Url.Action("trangchu", "Home")" class="btn btn-success">Tiếp tục mua hàng</a>
+</div>
+
+@if (Model != null && Model.lst.Any())
+{
+    <table class="table table-bordered">
+        <thead class="thead-light">
+            <tr>
+                <th class="text-center">Mã sản phẩm</th>
+                <th class="text-center">Tên sản phẩm</th>
+                <th class="text-center">Ảnh</th>
+                <th class="text-center">Số lượng</th>
+                <th class="text-center">Đơn giá</th>
+                <th class="text-center">Thành tiền</th>
+                <th class="text-center">Chi tiết</th>
+                <th class="text-center">Xóa</th>
+                <th class="text-center">Sửa</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (CartItem item in Model.lst)
+            {
+                <tr>
+                    <td class="text-center align-middle">@item.isan_pham_id</td>
+                    <td class="text-center align-middle">@item.iten</td>
+                    <td class="text-center align-middle">
+                        <img src="@Url.Content("~/Content/Images/" + item.ihinh_anh_url)" alt="Ảnh bìa" style="width:100px;" />
+                    </td>
+                    <td class="text-center align-middle">
+                        <button type="button" class="btn btn-secondary" onclick="updateQuantity('@item.isan_pham_id', -1)">-</button>
+                        <span>@item.iso_luong</span>
+                        <button type="button" class="btn btn-secondary" onclick="updateQuantity('@item.isan_pham_id', 1)">+</button>
+                    </td>
+
+                    <td class="text-center align-middle">@String.Format("{0:#,###} VNĐ", item.igia)</td>
+                    <td class="text-center align-middle">@String.Format("{0:#,###} VNĐ", item.thanhtien)</td>
+                    <td class="text-center align-middle">
+                        <a href="@Url.Action("Details", "Home", new { id = item.isan_pham_id })">Chi tiết sản phẩm</a>
+                    </td>
+                    <td class="text-center align-middle">
+                        <a href="@Url.Action("XoaMatHang", "DatHang", new { msp = item.isan_pham_id })">Xóa</a>
+                    </td>
+                    <td class="text-center align-middle">
+                        <a href="@Url.Action("SuaMatHang", "DatHang", new { msp = item.isan_pham_id })" class="btn btn-secondary">Sửa</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-left"><strong>Tổng:</strong></td>
+                <td class="text-center"><strong>@Model.TongSLHang() Sản Phẩm</strong></td>
+                <td></td>
+                <td class="text-center"><strong>@String.Format("{0:#,###} VNĐ", Model.TongThanhTien())</strong></td>
+                <td class="text-center">
+                    <strong>
+                        <div class="text-right mt-3">
+                            <a href="#" onclick="confirmClearCart(event);" class="btn btn-danger">Xóa toàn bộ giỏ hàng</a>
+                        </div>
+                    </strong>
+                </td>
+                <td colspan="2" class="text-center">
+                    <strong>
+                        <div class="text-right mt-3">
+                            <a href="@Url.Action("XacNhanDatHang", "DatHang")" class="btn btn-primary">Đặt Hàng</a>
+                        </div>
+                    </strong>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
+}
+else
+{
+    <p>Giỏ hàng của bạn đang trống.</p>
+}
+<script>
+    function confirmClearCart(event) {
+        event.preventDefault(); // Ngăn chặn hành động mặc định của liên kết
+        var confirmed = confirm("Bạn có chắc chắn muốn xóa toàn bộ giỏ hàng không?");
+        if (confirmed) {
+            window.location.href = '@Url.Action("XoaTatCaMatHang", "DatHang")';
+        }
+    }
+</script>
+

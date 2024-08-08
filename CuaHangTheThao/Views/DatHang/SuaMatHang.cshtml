@@ -1,0 +1,110 @@
+﻿@using CuaHangTheThao.Models
+@model CuaHangTheThao.Models.CartItem
+
+@{
+    ViewBag.Title = "trangchu";
+    Layout = "~/Views/Shared/layout_trangchu.cshtml";
+}
+
+<h2>Chỉnh sửa mặt hàng</h2>
+
+<style>
+    /* CSS styles for SuaMatHang view */
+    h2 {
+        color: #2c3e50;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    div {
+        padding: 10px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    p {
+        font-size: 18px;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        margin: 5px;
+    }
+
+    #soLuong {
+        text-align: center;
+        width: 50px;
+        margin: 0 10px;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border-color: #dc3545;
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+        .btn-primary:hover, .btn-danger:hover, .btn-success:hover {
+            opacity: 0.8;
+        }
+</style>
+
+<div>
+    <p>Sản phẩm: @Model.isan_pham_id</p>
+    <p>Tên sản phẩm: @Model.iten</p>
+    <p>Giá: @Model.igia</p>
+
+    <div>
+        <button id="giamSoLuong" class="btn btn-danger">-</button>
+        <input id="soLuong" type="text" value="@Model.iso_luong" readonly />
+        <button id="tangSoLuong" class="btn btn-success">+</button>
+    </div>
+
+    <button id="capNhat" class="btn btn-primary">Cập nhật</button>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#tangSoLuong').click(function() {
+            var currentQuantity = parseInt($('#soLuong').val());
+            $('#soLuong').val(currentQuantity + 1);
+        });
+
+        $('#giamSoLuong').click(function() {
+            var currentQuantity = parseInt($('#soLuong').val());
+            if (currentQuantity > 1) {
+                $('#soLuong').val(currentQuantity - 1);
+            }
+        });
+
+        $('#capNhat').click(function() {
+            var newQuantity = $('#soLuong').val();
+            var productId = '@Model.isan_pham_id';
+
+            $.ajax({
+                url: '/DatHang/CapNhatSoLuong',
+                type: 'POST',
+                data: { msp: productId, soLuong: newQuantity },
+                success: function(response) {
+                    alert('Cập nhật thành công');
+                    window.location.href = '/DatHang/XemGioHang';
+                },
+                error: function(xhr, status, error) {
+                    console.log("Có lỗi xảy ra: " + error);
+                }
+            });
+        });
+    });
+</script>

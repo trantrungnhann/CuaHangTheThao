@@ -1,0 +1,75 @@
+﻿html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.box {
+    text-align: center;
+    background: #00ffff;
+    width: 400px;
+    padding: 25px;
+    box-shadow: 0px 0px 20px 0px #000;
+    border-radius: 10px;
+}
+
+    .box h2 {
+        color: #fff; /* Màu chữ tiêu đề */
+        margin-bottom: 20px;
+    }
+
+    .box label {
+        color: #fff; /* Màu chữ của label */
+        font-size: 16px;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .box input[type="password"],
+    .box input[type="text"] {
+        background: none;
+        outline: none;
+        width: 210px;
+        height: 40px;
+        border-radius: 40px;
+        padding: 0px 15px;
+        margin: 15px 0px;
+        border: solid 2px #002cff;
+        color: #fff; /* Màu chữ trong input */
+        transition: 0.3s;
+    }
+
+        .box input[type="password"]:focus,
+        .box input[type="text"]:focus {
+            width: 320px;
+            border-color: chartreuse;
+            transition: 0.3s;
+        }
+
+    .box button[type="submit"] {
+        background: none;
+        outline: none;
+        width: 160px;
+        height: 40px;
+        border-radius: 40px;
+        margin: 15px 0px;
+        border: solid 2px #002cff;
+        color: #fff; /* Màu chữ nút submit */
+        font-size: 18px;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+
+        .box button[type="submit"]:hover {
+            background: #002cff;
+            transition: 0.3s;
+        }

@@ -1,0 +1,7 @@
+﻿@using CuaHangTheThao.Models;
+@model List<SanPham>
+
+@foreach (var l in Model)
+{
+    <a class="dropdown-item" href="#">@l.ten</a>
+}

@@ -1,0 +1,98 @@
+﻿@using CuaHangTheThao.Models
+@model CuaHangTheThao.Models.GioHangmodel
+
+@{
+    ViewBag.Title = "Xác Nhận Đặt Hàng";
+    Layout = "~/Views/Shared/layout_trangchu.cshtml";
+    NguoiDung user = ViewBag.n as NguoiDung;
+}
+
+<h2 style="text-align:center; color: #2c3e50;">Xác Nhận Đặt Hàng</h2>
+
+@if (user != null)
+{
+    <div class="container mt-4">
+        <h4 class="text-primary">Thông tin người dùng</h4>
+        <p><strong>Tên khách hàng:</strong> @user.ten</p>
+        <p><strong>Email:</strong> @user.email</p>
+        <p><strong>Địa chỉ:</strong> @user.dia_chi</p>
+    </div>
+}
+
+<div class=mt-4">
+    <h4 class="text-primary">Thông tin giỏ hàng</h4>
+
+    @if (Model != null && Model.lst.Any())
+    {
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th class="text-center">Mã sản phẩm</th>
+                    <th class="text-center">Tên sản phẩm</th>
+                    <th class="text-center">Ảnh</th>
+                    <th class="text-center">Số lượng</th>
+                    <th class="text-center">Đơn giá</th>
+                    <th class="text-center">Thành tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.lst)
+                {
+                    <tr>
+                        <td class="text-center align-middle">@item.isan_pham_id</td>
+                        <td class="text-center align-middle">@item.iten</td>
+                        <td class="text-center align-middle">
+                            <img src="@Url.Content("~/Content/Images/" + item.ihinh_anh_url)" alt="Ảnh sản phẩm" style="width:100px;" />
+                        </td>
+                        <td class="text-center align-middle">@item.iso_luong</td>
+                        <td class="text-center align-middle">@String.Format("{0:#,###} VNĐ", item.igia)</td>
+                        <td class="text-center align-middle">@String.Format("{0:#,###} VNĐ", item.thanhtien)</td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5" class="text-right"><strong>Tổng cộng:</strong></td>
+                    <td class="text-center"><strong>@String.Format("{0:#,###} VNĐ", Model.TongThanhTien())</strong></td>
+                </tr>
+            </tfoot>
+        </table>
+    }
+    else
+    {
+        <p>Giỏ hàng của bạn đang trống.</p>
+    }
+</div>
+
+<div class="mt-4 col-4">
+    <form method="post" action="@Url.Action("XLDatHang", "DatHang")">
+        <div class="form-group">
+            <label for="NgayGiao" class="font-weight-bold">Ngày Giao Hàng:</label>
+            <input data-datepicker type="date" class="form-control" id="NgayGiao" name="NgayGiao" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Xác Nhận Đặt Hàng</button>
+        @if (ViewBag.tb != null)
+        {
+            if (ViewBag.tb == 1)
+            {
+                <div class="alert alert-success mt-3">
+                    Đặt hàng thành công!
+                </div>
+            }
+            else if (ViewBag.tb == 0)
+            {
+                <div class="alert alert-danger mt-3">
+                    Đặt hàng không thành công. Vui lòng thử lại.
+                </div>
+            }
+        }
+    </form>
+</div> 
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const datePicker = document.getElementById('NgayGiao');
+        const today = new Date().toISOString().split('T')[0];
+        datePicker.min = today;
+    });
+</script>

@@ -1,0 +1,66 @@
+﻿/* Định dạng chung cho container sản phẩm */
+.container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Định dạng cho các sản phẩm trong hàng */
+.col-md-4 {
+    margin-bottom: 20px;
+}
+
+/* Định dạng cho hình ảnh sản phẩm */
+img.w-100 {
+    width: 130%;
+    height: 220px; /* Thay đổi chiều cao của ảnh để dài hơn */
+    object-fit: cover; /* Đảm bảo ảnh không bị biến dạng và đầy đủ trong khung */
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Định dạng cho tên sản phẩm */
+.card-title {
+    font-size: 1.25rem;
+    margin: 10px 0;
+    color: #333;
+}
+
+/* Định dạng cho các nút */
+.btn-warning {
+    background-color: #ffc107;
+    color: #212529;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    margin: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+    .btn-warning:hover {
+        background-color: #e0a800;
+        color: #fff;
+    }
+
+/* Định dạng cho đoạn mô tả sản phẩm */
+p {
+    color: #555;
+    font-size: 0.875rem;
+}
+
+/* Định dạng cho tiêu đề danh sách sản phẩm */
+h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Đảm bảo các sản phẩm được căn chỉnh đều trên một hàng */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}

@@ -1,0 +1,18 @@
+﻿@using CuaHangTheThao.Models;
+@model List<DanhMucSanPham>
+@*@{
+    ViewBag.Title = "DanhMucSanPham";
+    Layout = "~/Views/Shared/layout_trangchu.cshtml";
+}
+
+<h2>DanhMucSanPham</h2>*@
+<ul class="nav flex-column">
+    <li class="nav-item" style="background-color:red">
+        DANH MỤC SẢN PHẨM
+    </li>
+    @{ foreach (DanhMucSanPham dmsp in Model)
+                    {
+        <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("trangchu", "Home", new { danhMucId = dmsp.danh_muc_id })">@dmsp.ten</a>
+        </li> } }
+</ul>

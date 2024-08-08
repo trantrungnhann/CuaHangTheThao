@@ -1,0 +1,60 @@
+﻿@using CuaHangTheThao.Models;
+@model CuaHangTheThao.Models.SanPham
+
+@{
+    ViewBag.Title = "Chi Tiết Sản Phẩm";
+    Layout = "~/Views/Shared/layout_trangchu.cshtml";
+    var danhMuc = ViewBag.DanhMuc as List<DanhMucSanPham>;
+    <link href="~/Controllers/bootstrap/css/Details.css" rel="stylesheet" />
+}
+
+<!-- Link to the custom CSS file -->
+<link rel="stylesheet" href="~/Content/CSS/product-details.css" />
+
+<h2 class="product-title">Chi Tiết Sản Phẩm</h2>
+<div class="product-details-container">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="@Url.Content("~/Content/Images/" + Model.hinh_anh_url)" alt="Product image" class="product-image" />
+        </div>
+        <div class="col-md-8">
+            <div class="product-info">
+                <h4 class="product-name">@Html.DisplayFor(model => model.ten)</h4>
+                <label class="label-text">Mô Tả</label>
+                <div class="description-text">@Html.DisplayFor(model => model.mo_ta)</div>
+                <label class="label-text">Giá Bán</label>
+                <div class="price-text">@String.Format("{0:###,### VND}", Model.gia)</div>
+                <label class="label-text">Số Lượng</label>
+                <div class="quantity-selector">
+                    <button class="btn-decrease" onclick="updateQuantity(-1)">-</button>
+                    <input type="text" id="quantity" class="quantity-input" value="1" readonly />
+                    <button class="btn-increase" onclick="updateQuantity(1)">+</button>
+                </div>
+                <div class="category-list">
+                    <p>Danh Mục:</p>
+                    <ul>
+                        @if (danhMuc != null)
+                        {
+                            foreach (var dm in danhMuc.Where(d => d.danh_muc_id == Model.danh_muc_id))
+                            {
+                                <li>@dm.ten</li>
+                            }
+                        }
+                    </ul>
+                </div>
+                <a href="@Url.Action("ThemMatHang", "DatHang", new { msp = Model.san_pham_id })" class="btn-add-to-cart">Thêm Vào Giỏ Hàng</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function updateQuantity(change) {
+        var quantityInput = document.getElementById('quantity');
+        var currentQuantity = parseInt(quantityInput.value);
+        var newQuantity = currentQuantity + change;
+        if (newQuantity > 0) {
+            quantityInput.value = newQuantity;
+        }
+    }
+</script>

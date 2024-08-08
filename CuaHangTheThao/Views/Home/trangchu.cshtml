@@ -1,0 +1,25 @@
+﻿@using CuaHangTheThao.Models;
+@model List<SanPham>
+
+@{
+    ViewBag.Title = "trangchu";
+    Layout = "~/Views/Shared/layout_trangchu.cshtml";
+}
+<div class="row">
+    @foreach (var sp in Model)
+    {
+        <div class="col-md-4 text-center mt-4 mb-4">
+            <img src="/Content/Images/@sp.hinh_anh_url" class="w-100" alt="@sp.ten" />
+            <p style="height:40px;">@sp.ten</p>
+            <p>@String.Format("{0:###,### VND}", sp.gia)</p>
+            <div class="card-body">
+                
+                @Html.ActionLink("Chi tiết", "Details", "Home", new { id = sp.san_pham_id }, new { @class = "btn btn-warning" })
+                <a href="/DatHang/ThemMatHang/?msp=@sp.san_pham_id">
+                    Chọn Mua
+                </a>
+            </div>
+        </div>
+    }
+</div>
+

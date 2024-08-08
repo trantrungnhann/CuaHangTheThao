@@ -1,0 +1,48 @@
+﻿@model IEnumerable<CuaHangTheThao.Models.SanPham>
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/layout_trangchu.cshtml";
+}
+
+<h2>Search</h2>
+@using (Html.BeginForm("Search", "Home", FormMethod.Post))
+{
+    <div class="form-group">
+        <input type="text" name="keyword" class="form-control" placeholder="Enter product name" />
+    </div>
+    <div class="form-group">
+        <input type="number" name="minPrice" class="form-control" placeholder="Min price" step="0.01" />
+    </div>
+    <div class="form-group">
+        <input type="number" name="maxPrice" class="form-control" placeholder="Max price" step="0.01" />
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+}
+
+@if (Model != null && Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.ten</td>
+                    <td>@product.gia</td>
+                    <td>@product.mo_ta</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No products found</p>
+}
+

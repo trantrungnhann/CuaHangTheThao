@@ -1,0 +1,28 @@
+﻿@using CuaHangTheThao.Models;
+
+@model List<DanhMucSanPham>
+<ul class="nav navbar" style="list-style: none; padding: 0; margin: 0;">
+    @{
+        foreach (var dm in Model)
+        {
+            <li class="nav-item" style="position: relative; display: inline-block;">
+                <button class="btn dropdown-toggle" href="#" id="dropdownMenuButton" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                        style="color: blue; text-transform: uppercase; padding: 12px 20px; border-radius: 4px;  text-decoration: none; display: block; transition: background-color 0.3s, color 0.3s; font-weight: bold;">
+                    @dm.ten
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style=" border: 1px solid #ddd; border-radius: 4px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 4px; padding: 0; width: 200px; position: absolute; left: 0;">
+                    @Html.Action("MenuCap2", "Home", new { madm = dm.danh_muc_id })
+                </div>
+            </li>
+        }
+    }
+</ul>
+
+
+
+
+<script src="~/bootstrap/js/bootstrap.min.js"></script>
+<script src="~/bootstrap/js/jquery-3.3.1.min.js"></script>
+
+
+
