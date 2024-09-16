@@ -1,0 +1,38 @@
+﻿@model IEnumerable<CuaHangTheThao.Models.DanhMucSanPham>
+@{
+    ViewBag.Title = "Danh Mục Sản Phẩm";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<h2 class="text-center">Danh Sách Danh Mục</h2>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr class="bg-primary text-white">
+                <th>ID</th>
+                <th>Tên</th>
+                <th>Mô Tả</th>
+                <th>Thao Tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.danh_muc_id</td>
+                    <td>@item.ten</td>
+                    <td>@item.mo_ta</td>
+                    <td>
+                        @Html.ActionLink("Sửa", "SuaDanhMuc", new { id = item.danh_muc_id }, new { @class = "btn btn-warning btn-sm" }) |
+                        @Html.ActionLink("Xóa", "XoaDanhMuc", new { id = item.danh_muc_id }, new { @class = "btn btn-danger btn-sm" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="text-center">
+    @Html.ActionLink("Thêm Danh Mục Mới", "ThemDanhMuc", null, new { @class = "btn btn-success" })
+</div>

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<CuaHangTheThao.Models.NguoiDung>
+@{
+    ViewBag.Title = "NguoiDungQL";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+    int stt = 0;
+}
+
+
+<h2 class="text-center">Quản Lý Người Dùng</h2>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead class="bg-primary text-white">
+            <tr>
+                <th class="text-center">STT</th>
+                <th class="text-center">Tên Đăng Nhập</th>
+                <th class="text-center">Email</th>
+                <th class="text-center">Tên</th>
+                <th class="text-center">Họ</th>
+                <th class="text-center">Số Điện Thoại</th>
+                <th class="text-center">Địa Chỉ</th>
+                <th class="text-center">Ngày Đăng Ký</th>
+                <th class="text-center">Hành Động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                stt++;
+                <tr>
+                    <td class="text-center">@stt</td>
+                    <td class="text-center">@item.ten_dang_nhap</td>
+                    <td class="text-center">@item.email</td>
+                    <td class="text-center">@item.ten</td>
+                    <td class="text-center">@item.ho</td>
+                    <td class="text-center">@item.so_dien_thoai</td>
+                    <td class="text-center">@item.dia_chi</td>
+                    <td class="text-center">@String.Format("{0:dd-MM-yyyy}", item.ngay_dang_ky)</td>
+                    <td class="text-center">
+                        <a href="@Url.Action("SuaNguoiDung", new { id = item.nguoi_dung_id })" class="btn btn-warning btn-sm">Sửa</a>
+
+                        @using (Html.BeginForm("XoaNguoiDung", "QuanLyNguoiDung", FormMethod.Post))
+                        {
+                            @Html.Hidden("id", item.nguoi_dung_id)
+                            <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
+                        }
+                        <a href="@Url.Action("ResetMatKhau", new { id = item.nguoi_dung_id })" class="btn btn-secondary btn-sm">Reset Mật Khẩu</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="text-center">
+    <a href="@Url.Action("ThemNguoiDung")" class="btn btn-success btn-lg">Thêm Người Dùng</a>
+</div>

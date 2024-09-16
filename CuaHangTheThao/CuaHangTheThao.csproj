@@ -123,6 +123,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DatHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\QuanLyController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -199,6 +200,47 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\anh1.jpg" />
+    <Content Include="Images\anh2.jpg" />
+    <Content Include="Images\anh3.jpg" />
+    <Content Include="Images\fb.jpg" />
+    <Content Include="Images\GiayTheThao1.jpg" />
+    <Content Include="Images\GiayTheThao10.jpg" />
+    <Content Include="Images\GiayTheThao11.jpg" />
+    <Content Include="Images\GiayTheThao2.jpg" />
+    <Content Include="Images\GiayTheThao3.jpg" />
+    <Content Include="Images\GiayTheThao4.jpg" />
+    <Content Include="Images\GiayTheThao5.jpg" />
+    <Content Include="Images\GiayTheThao6.jpg" />
+    <Content Include="Images\GiayTheThao7.jpg" />
+    <Content Include="Images\GiayTheThao8.jpg" />
+    <Content Include="Images\GiayTheThao9.jpg" />
+    <Content Include="Images\insta.jpg" />
+    <Content Include="Images\javastripct.jpg" />
+    <Content Include="Images\logo.png" />
+    <Content Include="Images\PhuKienTapGym1.jpg" />
+    <Content Include="Images\PhuKienTapGym2.jpg" />
+    <Content Include="Images\PhuKienTapGym3.jpg" />
+    <Content Include="Images\PhuKienTapGym4.jpg" />
+    <Content Include="Images\PhuKienTheThao1.jpg" />
+    <Content Include="Images\PhuKienTheThao2.jpg" />
+    <Content Include="Images\PhuKienTheThao3.jpg" />
+    <Content Include="Images\PhuKienTheThao4.jpg" />
+    <Content Include="Images\PhuKienTheThao5.jpg" />
+    <Content Include="Images\PhuKienTheThao6.jpg" />
+    <Content Include="Images\PhuKienTheThao7.jpg" />
+    <Content Include="Images\QuanAoTheThao1.jpg" />
+    <Content Include="Images\QuanAoTheThao10.jpg" />
+    <Content Include="Images\QuanAoTheThao2.jpg" />
+    <Content Include="Images\QuanAoTheThao3.jpg" />
+    <Content Include="Images\QuanAoTheThao4.jpg" />
+    <Content Include="Images\QuanAoTheThao5.jpg" />
+    <Content Include="Images\QuanAoTheThao6.jpg" />
+    <Content Include="Images\QuanAoTheThao7.jpg" />
+    <Content Include="Images\QuanAoTheThao8.jpg" />
+    <Content Include="Images\QuanAoTheThao9.jpg" />
+    <Content Include="Images\tiktok.jpg" />
+    <Content Include="Images\timkiem.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Controllers\bootstrap\css\bootstrap-grid.css.map" />
@@ -216,6 +258,9 @@
       <LastGenOutput>csdl_cuahangthethao.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+    <None Include="Models\csdl_cuahangthethao.dbml.layout">
+      <DependentUpon>csdl_cuahangthethao.dbml</DependentUpon>
+    </None>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -240,7 +285,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Shared\layout_trangchu.cshtml" />
+    <Content Include="Views\Shared\_LayoutPage1.cshtml" />
     <Content Include="Views\Home\trangchu.cshtml" />
     <Content Include="Views\Home\ThemMoi.cshtml" />
     <Content Include="Views\Home\DanhMucSanPham.cshtml" />
@@ -254,6 +299,24 @@
     <Content Include="Views\Home\MenuCap2.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Shared\_LayoutPage2.cshtml" />
+    <Content Include="Views\QuanLy\Index.cshtml" />
+    <Content Include="Views\QuanLy\ThongKeHoaDon.cshtml" />
+    <Content Include="Views\QuanLy\XemChiTiet.cshtml" />
+    <Content Include="Views\QuanLy\QLyDonHangChuaGiao.cshtml" />
+    <Content Include="Views\QuanLy\QLyDonHangDaGiao.cshtml" />
+    <Content Include="Views\QuanLy\SanPham.cshtml" />
+    <Content Include="Views\QuanLy\ThemSanPham.cshtml" />
+    <Content Include="Views\QuanLy\SuaSanPham.cshtml" />
+    <Content Include="Views\QuanLy\DanhMuc.cshtml" />
+    <Content Include="Views\QuanLy\ThemDanhMuc.cshtml" />
+    <Content Include="Views\QuanLy\SuaDanhMuc.cshtml" />
+    <Content Include="Views\QuanLy\NguoiDungQL.cshtml" />
+    <Content Include="Views\QuanLy\ThemNguoiDung.cshtml" />
+    <Content Include="Views\QuanLy\SuaNguoiDung.cshtml" />
+    <Content Include="Views\QuanLy\Admin.cshtml" />
+    <Content Include="Views\QuanLy\ThemQuanTriVien.cshtml" />
+    <Content Include="Views\QuanLy\SuaQuanTriVien.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -273,11 +336,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Models\csdl_cuahangthethao.dbml.layout">
-      <DependentUpon>csdl_cuahangthethao.dbml</DependentUpon>
-    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

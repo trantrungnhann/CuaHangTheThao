@@ -1,0 +1,50 @@
+﻿@model List<CuaHangTheThao.Models.SanPham>
+@{
+    ViewBag.Title = "Sản Phẩm";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<h2 class="text-center">Danh Sách Sản Phẩm</h2>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead class="bg-primary text-white">
+            <tr>
+                <th>Tên Sản Phẩm</th>
+                <th>Mô Tả</th>
+                <th>Giá</th>
+                <th>Danh Mục</th>
+                <th>Số Lượng Tồn</th>
+                <th>Hình Ảnh</th>
+                <th>Ngày Tạo</th>
+                <th>Hành Động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var sp in Model)
+            {
+                <tr>
+                    <td>@sp.ten</td>
+                    <td>@sp.mo_ta</td>
+                    <td>@string.Format("{0:#,##0.00}", sp.gia)</td>
+                    <td>@sp.danh_muc_id</td>
+                    <td>@sp.so_luong_ton</td>
+                    <td><img src="~/Images/@sp.hinh_anh_url" alt="@sp.ten" style="width:50px;" /></td>
+                    <td>@String.Format("{0:dd/MM/yyyy}", sp.ngay_tao)</td>
+                    <td>
+                        <a href="@Url.Action("SuaSanPham", new { id = sp.san_pham_id })" class="btn btn-warning btn-sm">Sửa</a>
+                        @using (Html.BeginForm("XoaSanPham", "QuanLy", FormMethod.Post))
+                        {
+                            @Html.Hidden("id", sp.san_pham_id)
+                            <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="text-center">
+    <a href="@Url.Action("ThemSanPham")" class="btn btn-success btn-lg">Thêm Sản Phẩm</a>
+</div>

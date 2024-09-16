@@ -1,0 +1,25 @@
+﻿@model CuaHangTheThao.Models.QuanTriVien
+@{
+    ViewBag.Title = "ThemQuanTriVien";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+
+<h2 class="text-center">Thêm Quản Trị Viên</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.ten_dang_nhap)
+        @Html.TextBoxFor(m => m.ten_dang_nhap, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.email)
+        @Html.TextBoxFor(m => m.email, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.vai_tro)
+        @Html.TextBoxFor(m => m.vai_tro, new { @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-success">Thêm</button>
+}

@@ -1,16 +1,18 @@
-﻿<!DOCTYPE html>
-@using CuaHangTheThao.Models;
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <link href="~/Controllers/bootstrap/css/bootstrap.css" rel="stylesheet" />
-    <link href="~/Content/layout_trangchu.css" rel="stylesheet" />
-    
-    <title>@ViewBag.Title</title>
-
+    <title>KhachHangLayout</title>
+    <!--Bootstrap 4-->
+    <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="container text-center">
+    <div class="container-fluid text-center">
         <!--NAVIGATION-->
         <!-- <div class="container-fluid"> -->
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #001A2D !important; color: #ffffff;">
@@ -38,31 +40,39 @@
                 </ul>
 
                 <div class="ml-auto d-flex align-items-center">
-
                     <a href="/DatHang/XemGioHang" class="position-relative">
                         <img src="https://th.bing.com/th/id/OIP.YYgXL1OvwdmYVLD3U5JiRQAAAA?rs=1&pid=ImgDetMain" alt="Giỏ hàng" style="width: 20px; height: 20px;" />
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            @if (Session["gh"] != null)
+                            @if (Session["ghm"] != null)
                             {
-                                var gh = Session["gh"] as CuaHangTheThao.Models.GioHangmodel;
-                    @gh.TongSLHang() }
+                                var gh = Session["ghm"] as CuaHangTheThao.Models.GioHangmodel;
+                                @gh.TongSLHang() }
+                            else
+                            {
+                                @:0
+                            }
+                        </span>
+                    </a>
+                </div>
+            </div>
+            @{
+                if (Session["user"] != null)
+                {
+                    var nd = (CuaHangTheThao.Models.NguoiDung)Session["user"];
+                    <span class="nav-link" style="color: #ffffff;">Chào, @nd.ten</span>
+                    <a href="/Home/DangXuat" class="btn btn-danger">Đăng Xuất</a>
+                }
+                else if (Session["admin"] != null)
+                {
+                    var qtv = (CuaHangTheThao.Models.QuanTriVien)Session["admin"];
+                    <span class="nav-link" style="color: #ffffff;">Chào, @qtv.ten_dang_nhap</span>
+                    <a href="/Home/DangXuat" class="btn btn-danger">Đăng Xuất</a>
+                    <a href="/QuanLy/Index" class="btn btn-primary">Quản Lý</a>
+                }
                 else
                 {
-                    @:0
+                    <span class="nav-link" style="color: #ffffff;">Chào, Khách</span>
                 }
-                        </span>
-</div>
-            </div>
-            @if (Session["nd"] != null)
-            {
-                var nd = (CuaHangTheThao.Models.NguoiDung)Session["nd"];
-                <span class="nav-link" style="color: #ffffff;">Chào, @nd.ten_dang_nhap</span>
-                
-                <a href="@Url.Action("DangXuat", "Home")" class="btn btn-danger">Thoát</a>
-            }
-            else
-            {
-                <span class="nav-link" style="color: #ffffff;">Chào, Khách</span>
             }
         </nav>
 

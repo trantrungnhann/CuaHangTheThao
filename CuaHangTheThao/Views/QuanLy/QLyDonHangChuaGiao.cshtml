@@ -1,0 +1,65 @@
+﻿@model IEnumerable<CuaHangTheThao.Models.DonHang>
+@{
+    ViewBag.Title = "Đơn hàng chưa giao";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+    int stt = 0;
+}
+
+<h2>Đơn hàng chưa giao</h2>
+<form method="post" action="@Url.Action("DuyetDonHang", "QuanLy")">
+    <input type="hidden" name="redirectUrl" value="@Url.Action("QLyDonHangChuaGiao", "QuanLy")" />
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="w-10">STT</th>
+                <th class="w-18">Ngày đặt hàng</th>
+                <th class="w-30">Thông tin khách hàng</th>
+                <th class="w-40">Mã hóa đơn</th>
+                <th class="w-10">Tình trạng</th>
+                <th class="w-10">Duyệt giao hàng</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                stt++;
+                <tr>
+                    <td>@stt</td>
+                    <td>@String.Format("{0:dd-MM-yyyy}", item.ngay_dat_hang)</td>
+                    <td>
+                        <p class="text-center">@Html.DisplayFor(modelItem => item.nguoi_dung_id)</p>
+                        @if (item.NguoiDung != null)
+                        {
+                            <p>@item.NguoiDung.ten (@item.NguoiDung.so_dien_thoai)</p>
+                            <p>@item.NguoiDung.dia_chi</p>
+                        }
+                        else
+                        {
+                            <p>Thông tin khách hàng không có sẵn</p>
+                        }
+                    </td>
+                    <td class="text-center">
+                        <nav class="nav navbar">
+                            <div style="display:inline;" class="dropdown">
+                                <a class="nav-link dropdown-toggle" id="@item.don_hang_id" data-toggle="dropdown">
+                                    @Html.DisplayFor(modelItem => item.don_hang_id)
+                                    @Html.Action("ThongKeHoaDon", new { mhd = item.don_hang_id })
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="@item.don_hang_id">
+                                    @Html.Action("XemChiTiet", new { mhd = item.don_hang_id })
+                                </div>
+                            </div>
+                        </nav>
+                    </td>
+                    <td>
+                        <input type="checkbox" disabled /> <label>Chưa giao</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" name="selectedOrders" value="@item.don_hang_id" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-primary">Giao hàng ngay</button>
+</form>

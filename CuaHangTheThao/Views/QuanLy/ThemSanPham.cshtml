@@ -1,0 +1,42 @@
+﻿@model CuaHangTheThao.Models.SanPham
+@{
+    ViewBag.Title = "ThemSanPham";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+<h2>Thêm Sản Phẩm</h2>
+
+@using (Html.BeginForm("ThemSanPham", "QuanLy", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.ten)
+        @Html.TextBoxFor(m => m.ten, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.mo_ta)
+        @Html.TextBoxFor(m => m.mo_ta, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.gia)
+        @Html.TextBoxFor(m => m.gia, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.danh_muc_id)
+        @Html.DropDownListFor(m => m.danh_muc_id, new SelectList(ViewBag.DanhMuc, "danh_muc_id", "ten"), "Chọn danh mục", new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.so_luong_ton)
+        @Html.TextBoxFor(m => m.so_luong_ton, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.hinh_anh_url)
+        <input type="file" name="hinh_anh" class="form-control" />
+    </div>
+
+    <input type="submit" value="Thêm Sản Phẩm" class="btn btn-primary" />
+}

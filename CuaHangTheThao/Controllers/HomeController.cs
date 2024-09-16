@@ -32,21 +32,29 @@ namespace CuaHangTheThao.Controllers
         }
         public ActionResult DangNhap()
         {
-
             return View();
         }
+
         [HttpPost]
         public ActionResult DangNhap(FormCollection col)
         {
             var username = col["txtname"];
             var password = col["txtpass"];
 
-            NguoiDung nd = data.NguoiDungs.FirstOrDefault(k => k.ten_dang_nhap == username && k.mat_khau == password);
-
-            if (nd != null)
+            // Check if the user is an admin
+            var admin = data.QuanTriViens.FirstOrDefault(k => k.ten_dang_nhap == username && k.mat_khau == password);
+            if (admin != null)
             {
-                Session["nd"] = nd;
-                return RedirectToAction("trangchu");
+                Session["admin"] = admin;
+                return RedirectToAction("Index", "QuanLy");
+            }
+
+            // Check if the user is a regular user
+            var user = data.NguoiDungs.FirstOrDefault(k => k.ten_dang_nhap == username && k.mat_khau == password);
+            if (user != null)
+            {
+                Session["user"] = user;
+                return RedirectToAction("TrangChu");
             }
 
             ViewBag.ErrorMessage = "Tên đăng nhập hoặc mật khẩu không đúng.";
@@ -92,7 +100,7 @@ namespace CuaHangTheThao.Controllers
                 {
                     // Mã hóa mật khẩu trước khi lưu
 
-                    string connectionString = ConfigurationManager.ConnectionStrings["CuaHangTheThaoConnectionString2"].ConnectionString;
+                    string connectionString = ConfigurationManager.ConnectionStrings["CuaHangTheThaoConnectionString3"].ConnectionString;
 
                     using (var connection = new SqlConnection(connectionString))
                     {

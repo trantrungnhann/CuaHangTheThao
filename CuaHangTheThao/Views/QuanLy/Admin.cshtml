@@ -1,0 +1,49 @@
+﻿@model IEnumerable<CuaHangTheThao.Models.QuanTriVien>
+@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+    int stt = 0;
+}
+
+<h2 class="text-center">Quản Lý Quản Trị Viên</h2>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead class="bg-primary text-white">
+            <tr>
+                <th class="text-center">STT</th>
+                <th class="text-center">Tên Đăng Nhập</th>
+                <th class="text-center">Email</th>
+                <th class="text-center">Vai Trò</th>
+                <th class="text-center">Ngày Tạo</th>
+                <th class="text-center">Hành Động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                stt++;
+                <tr>
+                    <td class="text-center">@stt</td>
+                    <td class="text-center">@item.ten_dang_nhap</td>
+                    <td class="text-center">@item.email</td>
+                    <td class="text-center">@item.vai_tro</td>
+                    <td class="text-center">@String.Format("{0:dd-MM-yyyy}", item.ngay_tao)</td>
+                    <td class="text-center">
+                        <a href="@Url.Action("SuaQuanTriVien", new { id = item.quan_tri_vien_id })" class="btn btn-warning btn-sm">Sửa</a>
+                        @using (Html.BeginForm("XoaQuanTriVien", "QuanLyQuanTriVien", FormMethod.Post))
+                        {
+                            @Html.Hidden("id", item.quan_tri_vien_id)
+                            <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
+                        }
+                        <a href="@Url.Action("ResetMatKhauQTV", new { id = item.quan_tri_vien_id })" class="btn btn-secondary btn-sm">Reset Mật Khẩu</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="text-center">
+    <a href="@Url.Action("ThemQuanTriVien")" class="btn btn-success btn-lg">Thêm Quản Trị Viên</a>
+</div>

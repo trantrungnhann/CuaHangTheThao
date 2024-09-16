@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+    <link href="~/Controllers/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container border border-danger">
+        <!-- Navigation Bar -->
+        <div class="row border bg-light">
+            <div class="col-md-3">
+                @{
+                    if (Session["user"] != null)
+                    {
+                        var nd = (CuaHangTheThao.Models.NguoiDung)Session["user"];
+                        <span>Chào, @nd.ten</span>
+                        <a href="/Home/DangXuat" class="btn btn-danger">Đăng Xuất</a>
+                    }
+                    else if (Session["admin"] != null)
+                    {
+                        var qtv = (CuaHangTheThao.Models.QuanTriVien)Session["admin"];
+                        <span>Chào, @qtv.ten_dang_nhap</span>
+                        <a href="/Home/DangXuat" class="btn btn-danger">Đăng Xuất</a>
+                    }
+                    else
+                    {
+                        <span>Chào, Khách</span>
+                    }
+                }
+            </div>
+            <div class="col-md-9">
+                <ul class="nav navbar">
+                    <li class="nav-item"><a class="nav-link" href="/Home/trangchu">Trang chủ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Quanly/SanPham">Quản lý Sản phẩm</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Quanly/DanhMuc">Quản lý Danh Mục</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" href="#">Quản lý Đơn hàng</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="/QuanLy/QLyDonHangChuaGiao">Đơn hàng chưa giao</a>
+                            <a class="dropdown-item" href="/QuanLy/QLyDonHangDaGiao">Đơn hàng đã giao</a>
+                            <a class="dropdown-item" href="/Quanly/Index">Tất cả đơn hàng</a>
+                        </div>
+                    </li>
+
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" href="#">Quản lý Tài Khoản</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="/QuanLy/Admin">ADMIN</a>
+                            <a class="dropdown-item" href="/QuanLy/NguoiDungQL">Khách hàng</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="row">
+            <div class="col text-center">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="~/Controllers/bootstrap/js/jquery-3.3.1.min.js"></script>
+    <script src="~/Controllers/bootstrap/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>

@@ -63,7 +63,7 @@ namespace CuaHangTheThao.Models
     #endregion
 		
 		public csdl_cuahangthethaoDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["CuaHangTheThaoConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["CuaHangTheThaoConnectionString3"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

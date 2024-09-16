@@ -1,85 +1,84 @@
-﻿
-@model CuaHangTheThao.Models.DangKy
+﻿@model CuaHangTheThao.Models.DangKy
 @{
     ViewBag.Title = "Register";
-    Layout = "~/Views/Shared/layout_trangchu.cshtml";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
 }
 
+<h2 style="text-align: center; font-weight: bold; margin-bottom: 20px; color: #007bff;">@ViewBag.Title</h2>
 
+<div style="display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #f0f2f5;">
+    <div style="max-width: 500px; width: 100%; background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+        @using (Html.BeginForm("Register", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+            @Html.AntiForgeryToken()
 
-<h2>@ViewBag.Title</h2>
+            <div class="form-group" style="margin-bottom: 15px;">
+                @Html.LabelFor(model => model.TenDangNhap, htmlAttributes: new { @class = "control-label", style = "font-weight: bold;" })
+                <div>
+                    @Html.TextBoxFor(model => model.TenDangNhap, new { @class = "form-control", style = "border: 1px solid #ccc; border-radius: 4px; padding: 10px;" })
+                    @Html.ValidationMessageFor(model => model.TenDangNhap, "", new { @class = "text-danger", style = "margin-top: 5px;" })
+                </div>
+            </div>
 
-@using (Html.BeginForm("Register", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
-{
-    @Html.AntiForgeryToken()
+            <div class="form-group" style="margin-bottom: 15px;">
+                @Html.LabelFor(model => model.MatKhau, htmlAttributes: new { @class = "control-label", style = "font-weight: bold;" })
+                <div>
+                    @Html.PasswordFor(model => model.MatKhau, new { @class = "form-control", style = "border: 1px solid #ccc; border-radius: 4px; padding: 10px;" })
+                    @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger", style = "margin-top: 5px;" })
+                </div>
+            </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.TenDangNhap, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.TenDangNhap, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.TenDangNhap, "", new { @class = "text-danger" })
-        </div>
+            <div class="form-group" style="margin-bottom: 15px;">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label", style = "font-weight: bold;" })
+                <div>
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control", style = "border: 1px solid #ccc; border-radius: 4px; padding: 10px;" })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger", style = "margin-top: 5px;" })
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 15px;">
+                @Html.LabelFor(model => model.Ten, htmlAttributes: new { @class = "control-label", style = "font-weight: bold;" })
+                <div>
+                    @Html.TextBoxFor(model => model.Ten, new { @class = "form-control", style = "border: 1px solid #ccc; border-radius: 4px; padding: 10px;" })
+                    @Html.ValidationMessageFor(model => model.Ten, "", new { @class = "text-danger", style = "margin-top: 5px;" })
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 15px;">
+                @Html.LabelFor(model => model.Ho, htmlAttributes: new { @class = "control-label", style = "font-weight: bold;" })
+                <div>
+                    @Html.TextBoxFor(model => model.Ho, new { @class = "form-control", style = "border: 1px solid #ccc; border-radius: 4px; padding: 10px;" })
+                    @Html.ValidationMessageFor(model => model.Ho, "", new { @class = "text-danger", style = "margin-top: 5px;" })
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 15px;">
+                @Html.LabelFor(model => model.SoDienThoai, htmlAttributes: new { @class = "control-label", style = "font-weight: bold;" })
+                <div>
+                    @Html.TextBoxFor(model => model.SoDienThoai, new { @class = "form-control", style = "border: 1px solid #ccc; border-radius: 4px; padding: 10px;" })
+                    @Html.ValidationMessageFor(model => model.SoDienThoai, "", new { @class = "text-danger", style = "margin-top: 5px;" })
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 20px;">
+                @Html.LabelFor(model => model.DiaChi, htmlAttributes: new { @class = "control-label", style = "font-weight: bold;" })
+                <div>
+                    @Html.TextBoxFor(model => model.DiaChi, new { @class = "form-control", style = "border: 1px solid #ccc; border-radius: 4px; padding: 10px;" })
+                    @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger", style = "margin-top: 5px;" })
+                </div>
+            </div>
+
+            <div class="form-group" style="text-align: center;">
+                <button type="submit" class="btn btn-primary" style="padding: 10px 20px; font-size: 16px; border-radius: 5px; font-weight: bold;">Đăng ký</button>
+            </div>
+        }
     </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.MatKhau, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.PasswordFor(model => model.MatKhau, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Ten, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.Ten, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Ten, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Ho, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.Ho, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Ho, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.SoDienThoai, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.SoDienThoai, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.SoDienThoai, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.DiaChi, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.DiaChi, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <button type="submit" class="btn btn-primary">Đăng ký</button>
-        </div>
-    </div>
-}
+</div>
 
 <div>
     @if (ViewBag.Message != null)
     {
-        <div class="alert alert-danger">
+        <div class="alert alert-danger" style="margin-top: 20px; text-align: center;">
             @ViewBag.Message
         </div>
     }

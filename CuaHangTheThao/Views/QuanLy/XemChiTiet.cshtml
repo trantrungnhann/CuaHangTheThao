@@ -1,0 +1,24 @@
+﻿
+@model IEnumerable<CuaHangTheThao.Models.ChiTietDonHang>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Mã sản phẩm</th>
+            <th>Tên sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Đơn giá</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.san_pham_id</td>
+                <td>@item.SanPham.ten</td>
+                <td>@item.so_luong</td>
+                <td>@String.Format("{0:#,##0}", item.gia)</td>
+            </tr>
+        }
+    </tbody>
+</table>
